@@ -66,7 +66,7 @@ def fio_input():
         for row in rows: print(row)
         connection.commit()
 
-        connection.close()
+
 
         nameid=row
         return redirect('/face_check')
