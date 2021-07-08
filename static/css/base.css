@@ -11,7 +11,9 @@ body{
 
 .roof{
     height: 30px;
-    background-color: black;
+    background: -webkit-linear-gradient(top, #ff0000, #ffcfcf);
+    background: -o-linear-gradient(top, #ff0000, #ffcfcf);
+    background: -ms-linear-gradient(top, #ff0000, #ffcfcf);
 }
 
 .center{
