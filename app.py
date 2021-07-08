@@ -22,7 +22,6 @@ app = Flask(__name__)
 '''app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)'''
-id_to_check = 0
 nameid=0
 
 
@@ -57,18 +56,19 @@ def fio_input():
 
         '''user = User(surname=surname, name=name, middle_name=middle_name)'''
         #user = User.query.filter(User.surname == surname, User.name == name, User.middle_name == middle_name).all()
-        #global id_to_check
         #id_to_check = int(user[0].id)
         cursor = connection.cursor()
         cursor.execute("Select idregister  from register WHERE surname=(%s) AND name=(%s) AND middle_name=(%s) ",
                        (surname, name, middle_name))
         rows = cursor.fetchone()
-        for row in rows: print(row)
+        for row in rows:
+            print(row)
         connection.commit()
 
+        global nameid
+        nameid = int(rows['idregister'])
 
 
-        nameid=row
         return redirect('/face_check')
     else:
         return render_template('fio_input.html')
