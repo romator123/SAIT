@@ -56,7 +56,7 @@ def fio_input():
         middle_name = request.form['middle_name']
 
         '''user = User(surname=surname, name=name, middle_name=middle_name)'''
-        ###user = User.query.filter(User.surname == surname, User.name == name, User.middle_name == middle_name).all()
+        #user = User.query.filter(User.surname == surname, User.name == name, User.middle_name == middle_name).all()
         #global id_to_check
         #id_to_check = int(user[0].id)
         cursor = connection.cursor()
