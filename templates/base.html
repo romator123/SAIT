@@ -7,33 +7,97 @@
         <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css')}}">
         <title>{% block title %} {% endblock %}</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     </head>
     <body>
+    <div class="wrapper">
         <header>
-            <div class="container">
-                <div class="head">
-                    <div class="head roof">
-
-                    </div>
-                    <div class="head center">
-
-                    </div>
-                    <div class="head floor">
-
+            <div class="head">
+                <div class="head head-top">
+                    <div class="container">
+                        <div class="logo"></div>
+                        <div class="nav">
+                            <div class="nav_link"><a href="/">Главная</a></div>
+                            <div class="nav_link"><a href="/info">Информация</a></div>
+                            <div class="nav_link"><a href="/register">Регистрация</a></div>
+                        </div>
                     </div>
                 </div>
             </div>
         </header>
         <main>
-
+            {% block body %} {% endblock %}
         </main>
-        <footer>
-
-        </footer>
-        <a href="/">Главная</a>
-        <a href="/fio_input">Ввод</a>
-        <a href="/info">Информация</a>
-        <a href="/register">Регистрация</a>
-        {% block body %} {% endblock %}
-    </body>
+        <footer id="footer" class="footer-1">
+            <div class="main-footer widgets-dark typo-light">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6 col-md-3">
+                            <div class="widget subscribe no-box">
+                                <h5 class="widget-title">Абак-2000<span></span></h5>
+                                <p>Качество для тех, кто его ценит</p>
+                            </div>
+                        </div>
+                    <div class="col-xs-12 col-sm-6 col-md-3">
+                        <div class="widget no-box">
+                            <h5 class="widget-title">Навигация<span></span></h5>
+                            <ul class="thumbnail-widget">
+                                <li>
+                                    <div class="thumb-content"><a href="#.">Начало работы</a></div>
+                                </li>
+                                <li>
+                                    <div class="thumb-content"><a href="#.">Руководители</a></div>
+                                </li>
+                                <li>
+                                    <div class="thumb-content"><a href="#.">Наши партнёры</a></div>
+                                </li>
+                                <li>
+                                    <div class="thumb-content"><a href="#.">Наши клиенты</a></div>
+                                </li>
+                                <li>
+                                    <div class="thumb-content"><a href="#.">Новости</a></div>
+                                </li>
+                                <li>
+                                    <div class="thumb-content"><a href="#.">Лицензии</a></div>
+                                </li>
+                                <li>
+                                    <div class="thumb-content"><a href="#.">О компании</a></div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-3">
+                        <div class="widget no-box">
+                            <h5 class="widget-title">Начало работы<span></span></h5>
+                            <p>Получите доступ к полному набору наших услуг.</p>
+                            <a class="btn" href="#." target="_blank">Register Now</a>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-3">
+                        <div class="widget no-box">
+                            <h5 class="widget-title">Contact Us<span></span></h5>
+                            <p><a href="mailto:info@domain.com" title="glorythemes">Abak-2000@domain.com</a></p>
+                            <ul class="social-footer2">
+                                <li class=""><a title="youtube" target="_blank" href="/Youtube"><img alt="youtube" width="30" height="30" src="static/image/youtube2.jpg"></a></li>
+                                <li class=""><a href="/" target="_blank" title="Facebook"><img alt="Facebook" width="30" height="30" src="static/image/facebook.jpg"></a></li>
+                                <li class=""><a href="/" target="_blank" title="Twitter"><img alt="Twitter" width="30" height="30" src="static/image/twitter2.png"></a></li>
+                                <li class=""><a title="instagram" target="_blank" title="Instagram"><img alt="instagram" width="30" height="30" src="static/image/instagram-instagram.jpg"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <div class="footer-copyright">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <p>System Integrator Company Name © 2021. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</body>
 </html>
