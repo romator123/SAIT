@@ -10,16 +10,15 @@
     </head>
     <body>
         <header>
-            <div class="container">
-                <div class="head">
-                    <div class="head roof">
-
-                    </div>
-                    <div class="head center">
-
-                    </div>
-                    <div class="head floor">
-
+            <div class="head">
+                <div class="head head-top">
+                    <div class="container">
+                        <div class="logo"></div>
+                        <div class="nav">
+                            <div class="nav_link"><a href="/">Главная</a></div>
+                            <div class="nav_link"><a href="/info">Информация</a></div>
+                            <div class="nav_link"><a href="/register">Регистрация</a></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -30,10 +29,6 @@
         <footer>
 
         </footer>
-        <a href="/">Главная</a>
-        <a href="/fio_input">Ввод</a>
-        <a href="/info">Информация</a>
-        <a href="/register">Регистрация</a>
         {% block body %} {% endblock %}
     </body>
 </html>

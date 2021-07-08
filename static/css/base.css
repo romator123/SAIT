@@ -2,20 +2,62 @@
     display: flex;
     margin-right: 30px;
 }
-
+a:link{
+    color: white;
+    text-decoration: none;
+}
+a:visited{
+    color: white;
+}
 body{
     margin: 0 auto;
     border-spacing: 0;
     padding: 0;
 }
 
-.roof{
-    height: 30px;
-    background: -webkit-linear-gradient(top, #ff0000, #ffcfcf);
-    background: -o-linear-gradient(top, #ff0000, #ffcfcf);
-    background: -ms-linear-gradient(top, #ff0000, #ffcfcf);
+.head-top{
+    display: flex;
+    height: 50px;
+    background: -webkit-linear-gradient(bottom, #252525, #454545);
+    background: -o-linear-gradient(bottom, #252525, #454545);
+    background: -ms-linear-gradient(bottom, #252525, #454545);
 }
 
-.center{
+.container{
+    width: 1000px;
+    margin: 0 auto;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+}
 
+.nav{
+    align-items: center;
+    justify-content: space-between;
+    display: flex;
+    margin-top: 13px;
+}
+
+.logo{
+    width: 60px;
+    height: 50px;
+    margin-left: 50px;
+    background-image: url("../image/logo-abak.jpg") ;
+    background-size: contain;
+}
+
+.nav_link{
+    margin: 0 80px;
+    font-size: 12px;
+    border: 1px solid #212121;
+    border-radius: 5px;
+    width: 100px;
+    height: 20px;
+    text-align: center;
+    padding-top: 5px;
+    color: white;
+    text-decoration: none;
+    background: -webkit-linear-gradient(bottom, #232323, #333333);
+    background: -o-linear-gradient(bottom, #232323, #333333);
+    background: -ms-linear-gradient(bottom, #232323, #333333);
 }
