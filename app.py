@@ -1,5 +1,4 @@
 from flask import Flask, render_template, url_for, request, redirect
-from flask_sqlalchemy import SQLAlchemy
 import cv2
 import numpy as np
 import os
