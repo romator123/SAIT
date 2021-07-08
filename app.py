@@ -124,7 +124,7 @@ def face_check():
 
         id = 0
 
-        # names related to ids: example ==> Marcelo: id=1,  etc
+        ### names related to ids: example ==> Marcelo: id=1,  etc
         #names = ['None', 'Roman', 'Paula', 'Ilza', 'Z', 'W']
 
         # Initialize and start realtime video capture
