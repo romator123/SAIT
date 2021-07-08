@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Ввод имени
+{% endblock %}
+
+{% block body %}
+<h1>Ввод имени</h1>
+<form method="post">
+    <input type="text" id="surname" class="inp" name="surname">
+    <input type="text" id="name" class="inp" name="name">
+    <input type="text"  id="middle_name"class="inp" name="middle_name">
+    <input class="btn" type="submit" value="Отправить"></input>
+</form>
+{% endblock %}

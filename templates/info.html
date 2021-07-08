@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Пользователи
+{% endblock %}
+
+{% block body %}
+<h1>Пользователи</h1>
+<div id="content"></div>
+{% for el in user %}
+   <div class="fio">
+       <div class="fio"><h2>{{ el.surname }}</h2></div>
+       <div class="fio"><h2>{{ el.name }}</h2></div>
+       <div class="fio"><h2>{{ el.middle_name }}</h2></div>
+   </div>
+{% endfor %}
+<script src="static/js/info.js"></script>
+{% endblock %}
