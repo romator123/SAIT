@@ -1,4 +1,19 @@
 .fio{
-    display: flex;
-    margin-right: 30px;
+display: flex;
+margin-right: 30px;
+}
+
+body{
+margin: 0 auto;
+border-spacing: 0;
+padding: 0;
+}
+
+.roof{
+height: 30px;
+background-color: black;
+}
+
+.center{
+
 }
