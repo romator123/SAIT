@@ -15,36 +15,22 @@ cascadePath = "Cascades/haarcascade_frontalface_default.xml"
 faceCascade = cv2.CascadeClassifier(cascadePath);
 
 font = cv2.FONT_HERSHEY_SIMPLEX
-connection = pymysql.connect(host="192.168.200.121",user="abak2000",passwd="romator123",database="abakdb" )
+connection = pymysql.connect(host="192.168.200.121",user="abak2000",passwd="romator123",database="register" )
 
 
 app = Flask(__name__)
-'''app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db = SQLAlchemy(app)'''
+
 nameid=0
 
 
-'''class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    surname = db.Column(db.String(100), nullable=False)
-    name = db.Column(db.String(100), nullable=False)
-    middle_name = db.Column(db.String(100), nullable=False)
 
-    def __repr__(self):
-    return '<User %r>' % self.id
-'''
 
 @app.route('/')
 def index():
     return render_template('index.html')
 
 
-'''''@app.route('/info')
-def info():
-    user = User.query.filter(User.id == id_to_check)
-    return render_template('info.html', user=user)
-'''
+
 
 @app.route('/fio_input', methods=['POST', 'GET'])
 def fio_input():
@@ -54,9 +40,7 @@ def fio_input():
         name = request.form['name']
         middle_name = request.form['middle_name']
 
-        '''user = User(surname=surname, name=name, middle_name=middle_name)'''
-        #user = User.query.filter(User.surname == surname, User.name == name, User.middle_name == middle_name).all()
-        #id_to_check = int(user[0].id)
+
         cursor = connection.cursor()
         cursor.execute("Select idregister  from register WHERE surname=(%s) AND name=(%s) AND middle_name=(%s) ",
                        (surname, name, middle_name))
@@ -66,7 +50,7 @@ def fio_input():
         connection.commit()
 
         global nameid
-        nameid = int(rows['idregister'])
+        nameid = int(rows[0])
 
 
         return redirect('/face_check')
@@ -90,7 +74,7 @@ def register():
                        (surname, name, middle_name))
         rows = cursor.fetchone()
         for row in rows: print(row)
-        face_id = int(rows['idregister'])
+        face_id = int(rows[0])
         connection.commit()
         connection.close()
         while (True):
@@ -123,15 +107,13 @@ def face_check():
 
         id = 0
 
-        ### names related to ids: example ==> Marcelo: id=1,  etc
-        #names = ['None', 'Roman', 'Paula', 'Ilza', 'Z', 'W']
 
         # Initialize and start realtime video capture
         cam = cv2.VideoCapture(0)
         cam.set(3, 640)  # set video widht
         cam.set(4, 480)  # set video height
 
-        ### Define min window size to be recognized as a face
+        ## Define min window size to be recognized as a face
         minW = 0.1 * cam.get(3)
         minH = 0.1 * cam.get(4)
 
