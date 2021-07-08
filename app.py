@@ -90,7 +90,7 @@ def register():
                        (surname, name, middle_name))
         rows = cursor.fetchone()
         for row in rows: print(row)
-        face_id=row
+        face_id = int(rows['idregister'])
         connection.commit()
         connection.close()
         while (True):
