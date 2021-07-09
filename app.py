@@ -5,17 +5,18 @@ import os
 import pymysql
 
 
-cam = cv2.VideoCapture(1,cv2.CAP_DSHOW)
+#cam = cv2.VideoCapture(1,cv2.CAP_DSHOW)
+cam = cv2.VideoCapture('http://192.168.201.120:8080/video',cv2.CAP_DSHOW)
 cam.set(3, 640) # set video width
 cam.set(4, 480) # set video height
-face_detector = cv2.CascadeClassifier('Cascades/haarcascade_frontalface_default.xml')
+face_detector = cv2.CascadeClassifier(cv2.data.haarcascades +'Cascades/haarcascade_frontalface_default.xml')
 recognizer = cv2.face.LBPHFaceRecognizer_create()
 recognizer.read('trainer/trainer.yml')
 cascadePath = "Cascades/haarcascade_frontalface_default.xml"
 faceCascade = cv2.CascadeClassifier(cascadePath);
 
 font = cv2.FONT_HERSHEY_SIMPLEX
-connection = pymysql.connect(host="192.168.200.121",user="abak2000",passwd="romator123",database="register" )
+connection = pymysql.connect(host="192.168.100.121",user="abak2000",passwd="romator123",database="register" )
 
 
 app = Flask(__name__)
@@ -86,7 +87,7 @@ def register():
                 count += 1
 
                 # Save the captured image into the datasets folder
-                cv2.imwrite("dataset/User." + str(face_id) + '.' + str(count) + ".jpg", gray[y:y + h, x:x + w])
+                cv2.imwrite(r"C:/User//tcach/PycharmProject/WEBCAM/dataset/User." + str(face_id) + '.' + str(count) + ".jpg", gray[y:y + h, x:x + w])
 
                 cv2.imshow('image', img)
 
@@ -104,12 +105,29 @@ def register():
 @app.route('/face_check', methods=['POST', 'GET'])
 def face_check():
     if request.method == 'POST':
+        cap = cv2.VideoCapture('rtsp://admin:123456@192.168.1.216/H264?ch=1&subtype=0')
+        # print("After URL")
 
-        id = 0
+        while True:
+
+            # print('About to start the Read command')
+            ret, frame = cap.read()
+            # print('About to show frame of Video.')
+            cv2.imshow("Capturing", frame)
+            # print('Running..')
+
+            if cv2.waitKey(1) & 0xFF == ord('q'):
+                break
+
+        cap.release()
+        cv2.destroyAllWindows()
+
+        '''id = 0
 
 
         # Initialize and start realtime video capture
-        cam = cv2.VideoCapture(0)
+        #cam = cv2.VideoCapture(0)
+        cam = cv2.VideoCapture('http://192.168.201.120:8080/video', cv2.CAP_DSHOW)
         cam.set(3, 640)  # set video widht
         cam.set(4, 480)  # set video height
 
@@ -153,7 +171,7 @@ def face_check():
         print("\n [INFO] Exiting Program and cleanup stuff")
         cam.release()
         cv2.destroyAllWindows()
-
+'''
         ##if (id_to_check == face_id)
             ##return redirect('/info')
     else:
@@ -162,3 +180,4 @@ def face_check():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
