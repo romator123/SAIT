@@ -15,7 +15,7 @@ cascadePath = "Cascades/haarcascade_frontalface_default.xml"
 faceCascade = cv2.CascadeClassifier(cascadePath);
 
 font = cv2.FONT_HERSHEY_SIMPLEX
-connection = pymysql.connect(host="192.168.200.121",user="abak2000",passwd="romator123",database="register" )
+connection = pymysql.connect(host="192.168.100.121",user="abak2000",passwd="romator123",database="register" )
 
 
 app = Flask(__name__)
@@ -86,7 +86,7 @@ def register():
                 count += 1
 
                 # Save the captured image into the datasets folder
-                cv2.imwrite("dataset/User." + str(face_id) + '.' + str(count) + ".jpg", gray[y:y + h, x:x + w])
+                cv2.imwrite(r"C:/User//tcach/PycharmProject/WEBCAM/dataset/User." + str(face_id) + '.' + str(count) + ".jpg", gray[y:y + h, x:x + w])
 
                 cv2.imshow('image', img)
 
@@ -161,4 +161,5 @@ def face_check():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='192.168.100.121', port=5000 ,debug=True)
+
