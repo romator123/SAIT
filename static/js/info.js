@@ -5,7 +5,6 @@ function load()
         type: "POST",
         url: "/info",
         data: {text: 'Текст'}
-        dataType: 'html',
         success: function({{a}}){
             var json = jQuery.parseJSON({{a}})
             //var json = JSON.parse(result)

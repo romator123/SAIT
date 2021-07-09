@@ -129,6 +129,7 @@ html{
     transition: 0.5s;
     font-weight: 700;
     font-size: 18px;
+    border-radius: 15px;
 }
 
 .register_btn:hover{
