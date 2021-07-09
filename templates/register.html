@@ -4,12 +4,21 @@
 Ввод имени
 {% endblock %}
 
-{% block body %}
-<h1>Ввод имени</h1>
-<form method="post">
-    <input type="text" id="surname" class="inp" name="surname">
-    <input type="text" id="name" class="inp" name="name">
-    <input type="text"  id="middle_name"class="inp" name="middle_name">
-    <input class="btn" type="submit" value="Отправить"></input>
-</form>
+{% block main %}
+<div  class="register_form">
+    <div class="form_container">
+        <div class="zag">
+            <p>Авторизация</p>
+        </div>
+        <form method="post">
+            <p>Фамилия</p>
+            <input type="text" id="surname" class="inp" name="surname"  placeholder="Иванов">
+            <p>Имя</p>
+            <input type="text" id="name" class="inp" name="name" placeholder="Иван">
+            <p>Отчество</p>
+            <input type="text"  id="middle_name"class="inp" name="middle_name" placeholder="Иванович">
+            <input class="register_btn" type="submit" value="Отправить"></input>
+        </form>
+    </div>
+</div>
 {% endblock %}

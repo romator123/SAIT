@@ -1,18 +1,26 @@
+
 function load()
-        {
-            $.ajax({
-                type: "POST",
-                url: "{{url_for('app.info') }}",
-                success: function(result) {
-                    let json = JSON.parse(result)
-                    for(let el of json){
-                        $("#content").html(el.surname)
-                        $("#content").html(el.name)
-                        $("#content").html(el.middle_name)
-                    }
-                }
-            })
+{
+    $.ajax({
+        type: "POST",
+        url: "/info",
+        data: {text: 'Текст'}
+        dataType: 'html',
+        success: function({{a}}){
+            var json = jQuery.parseJSON({{a}})
+            //var json = JSON.parse(result)
+            console.log(json.s1)
+
+
+            //let json =
+            //for(let el of json){
+                //$("#content").html(el.surname)
+                //$("#content").html(el.name)
+                //$("#content").html(el.middle_name)
+                //}
         }
+    })
+}
 
 $(document).ready(function(){
      setInterval('load()',1000);
