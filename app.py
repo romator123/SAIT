@@ -8,7 +8,7 @@ import pymysql
 cam = cv2.VideoCapture(1,cv2.CAP_DSHOW)
 cam.set(3, 640) # set video width
 cam.set(4, 480) # set video height
-face_detector = cv2.CascadeClassifier('Cascades/haarcascade_frontalface_default.xml')
+face_detector = cv2.CascadeClassifier(cv2.data.haarcascades +'Cascades/haarcascade_frontalface_default.xml')
 recognizer = cv2.face.LBPHFaceRecognizer_create()
 recognizer.read('trainer/trainer.yml')
 cascadePath = "Cascades/haarcascade_frontalface_default.xml"
