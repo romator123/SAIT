@@ -3,20 +3,21 @@ function load()
 {
     $.ajax({
         type: "POST",
-        url: "/info",
-        data: {text: 'Текст'}
-        success: function({{a}}){
-            var json = jQuery.parseJSON({{a}})
-            //var json = JSON.parse(result)
-            console.log(json.s1)
-
-
-            //let json =
-            //for(let el of json){
-                //$("#content").html(el.surname)
-                //$("#content").html(el.name)
-                //$("#content").html(el.middle_name)
-                //}
+        url: "/info_new",
+        contentType: false,
+        cache: false,
+        processData: false,
+        success: function(data){
+            console.log("1")
+            $("#content").text(data.x);
+            var header = '<h2>My name is ' + data.x.name + '</h2>';
+            var output='<ul>';
+            for(var key in data.x) {
+                output += '<li>' + key + ':' + data.x[key] +'</li>';
+            }
+            output+="</ul>";
+            $("#content").innerHTML=output;
+            $("#content").innerHTML += header;
         }
     })
 }
