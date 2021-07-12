@@ -4,9 +4,9 @@
 Проверка лица
 {% endblock %}
 
-{% block body %}
+{% block main %}
 <h1>Проверка лица</h1>
-<form method="post">
+<form method="POST">
     <input class="btn" type="submit" value="Отправить"></input>
     <img src="{{ url_for('face_check') }}" />
 </form>
