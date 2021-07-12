@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for, request, redirect
+from flask import Flask, render_template, url_for, request, redirect, jsonify
 import cv2
 import numpy as np
 import os
@@ -23,7 +23,7 @@ app = Flask(__name__)
 
 nameid=0
 
-
+x = {"name": "asdsadasd", "age": "10"}
 
 
 @app.route('/')
@@ -31,6 +31,14 @@ def index():
     return render_template('index.html')
 
 
+@app.route('/info_new', methods=['POST'])
+def info_new():
+    return jsonify(x=x)
+
+
+@app.route('/info')
+def info():
+    return render_template('info.html')
 
 
 @app.route('/fio_input', methods=['POST', 'GET'])

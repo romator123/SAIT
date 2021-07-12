@@ -1,3 +1,4 @@
+var data_late = ''
 
 function load()
 {
@@ -8,16 +9,20 @@ function load()
         cache: false,
         processData: false,
         success: function(data){
-            console.log("1")
-            $("#content").text(data.x);
-            var header = '<h2>My name is ' + data.x.name + '</h2>';
-            var output='<ul>';
-            for(var key in data.x) {
-                output += '<li>' + key + ':' + data.x[key] +'</li>';
+            if(data_late != data.x){
+                $("#content").empty()
+                let output='<ul>';
+                for(let key in data.x) {
+                    output += '<li>' + data.x[key] +'</li>';
+                }
+                output+="</ul>";
+                $("#content").append(output);
+                data_late = data.x
+                console.log("123")
             }
-            output+="</ul>";
-            $("#content").innerHTML=output;
-            $("#content").innerHTML += header;
+            else{
+                return 0;
+            }
         }
     })
 }
