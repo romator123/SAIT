@@ -9,7 +9,7 @@ function load()
         cache: false,
         processData: false,
         success: function(data){
-            if(data_late != data.x){
+            if(JSON.stringify(data_late) !== JSON.stringify(data.x)){
                 $(".content").empty()
                 var table = document.createElement('table');
                 for(const key in data.x){
@@ -25,14 +25,7 @@ function load()
                 let head = table.insertRow(0);
                 head.style.position = "sticky";
                 document.querySelector(".content").appendChild(table);
-                /*let output='<ul>';
-                for(let key in data.x) {
-                    output += '<li>' + data.x[key] +'</li>';
-                }
-                output+="</ul>";
-                $(".content").append(output);*/
                 data_late = data.x
-                console.log("123")
             }
             else{
                 return 0;
@@ -44,3 +37,7 @@ function load()
 $(document).ready(function(){
      setInterval('load()',1000);
 });
+
+
+
+
