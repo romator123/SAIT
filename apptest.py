@@ -20,7 +20,7 @@ cascadePath = "Cascades/haarcascade_frontalface_default.xml"
 faceCascade = cv2.CascadeClassifier(cascadePath);
 
 font = cv2.FONT_HERSHEY_SIMPLEX
-connection = pymysql.connect(host="127.0.0.1",user="root",passwd="romator123",database="register" )
+connection = pymysql.connect(host="192.168.100.121",user="abak2000",passwd="romator123",database="register" )
 
 
 app = Flask(__name__)
