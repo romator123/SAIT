@@ -7,7 +7,8 @@
 {% block body %}
 <h1>Проверка лица</h1>
 <form method="post">
+    <img src="{{ url_for('video_feed') }}" />
     <input class="btn" type="submit" value="Отправить"></input>
-    <img src="{{ url_for('face_check') }}" />
+
 </form>
 {% endblock %}
