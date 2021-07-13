@@ -9,7 +9,7 @@ function load()
         cache: false,
         processData: false,
         success: function(data){
-            if(data_late !== data.x){
+            if(data_late != data.x){
                 $(".content").empty()
                 var table = document.createElement('table');
                 for(const key in data.x){
