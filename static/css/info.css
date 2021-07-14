@@ -1,0 +1,44 @@
+/*================================================================================   Person   ============================================================*/
+.content{
+    font-family: 'Montserrat';
+    overflow: auto;
+    border: 2px solid #bd8abd;
+    height: 300px;
+    margin: 0 auto;
+    width: 95%;
+}
+
+.person_table{
+    width: 100%;
+    text-align: left;
+    font-size: 18px;
+    color: white;
+}
+.content table td, th{
+   border-bottom: 1px solid #bd8abd;
+   padding: 25px;
+}
+.table_columns_contain{
+    border: 2px solid #bd8abd;
+    border-bottom: none;
+    margin: 0 auto;
+    margin-top: 70px;
+    width: 95%;
+}
+
+.table_columns{
+    width: 100%;
+    text-align: left;
+    font-size: 18px;
+    color: white;
+}
+table {
+  font-family: 'Montserrat';
+  table-layout: fixed;
+  width: 100%;
+}
+.table_columns td, th{
+   border-bottom: 1px solid #bd8abd;
+   padding: 22px;
+   background-color: rgb(255,255,255, 0.5);
+}

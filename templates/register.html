@@ -3,8 +3,11 @@
 {% block title %}
 Ввод имени
 {% endblock %}
+{% block head %}
 
+{% endblock %}
 {% block main %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/register.css')}}">
 <div  class="register_form">
     <div class="form_container">
         <div class="zag">

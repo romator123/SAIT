@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@300;500&family=Montserrat:wght@300&display=swap');
+@import "info.css";
+@import "fio_input.css";
 /*=================================================================================     Base    ====================================================*/
 /* полоса прокрутки (скроллбар) */
 ::-webkit-scrollbar {
@@ -23,24 +25,28 @@
     outline: 0;
     outline-offset: 0;
 }
+
 a {
   color: white ;
   text-decoration: none !important;
 }
+
 a:hover{
     color: #b9b9bf !important;
     text-decoration: none;
 }
+
 a:link{
     color: white;
     text-decoration: none;
 }
+
 a:visited{
     color: white;
     text-decoration: none;
 }
-body{
 
+body{
     display: flex;
     flex-direction: column;
     margin: 0;
@@ -52,7 +58,6 @@ body{
     background: -webkit-linear-gradient(left, #df1378, #65bfc8);
     background: -o-linear-gradient(left, #df1378, #65bfc8);
     background: -ms-linear-gradient(left, #df1378, #65bfc8);
-
 }
 
 main{
@@ -84,6 +89,8 @@ html{
     margin-bottom: 15px;
     display: flex;
     justify-content: space-evenly;
+    max-width: 60%;
+    min-width: 50%;
 }
 
 .nav{
@@ -99,7 +106,7 @@ html{
 .logo{
     width: 60px;
     height: 50px;
-    margin-left: 50px;
+    margin-right: 150px;
     background-image: url("../image/logo-abak.jpg") ;
     background-size: contain;
 }
@@ -109,60 +116,35 @@ html{
     border: 1px solid #212121;
     border-radius: 5px;
     width: 100px;
-    height: 24px;
+    height: 20px;
     text-align: center;
-    padding-top: 3px;
+    padding-top: 5px;
     color: white;
     text-decoration: none;
     background: -webkit-linear-gradient(bottom, #232323, #333333);
     background: -o-linear-gradient(bottom, #232323, #333333);
     background: -ms-linear-gradient(bottom, #232323, #333333);
 }
-
-/*================================================================================   Register   ===========================================================*/
-.inp{
-    display: block;
-    margin: 0 auto;
-    width: 410px;
-    height: 45px;
-    border: 1px solid #ccc;
-    margin-bottom: 20px;
-    transition: 0.3s;
-    padding-left: 10px;
-    border-radius: 5px;
-}
-
-.inp:hover{
-    border: 1px solid #64656a;
-}
-
-.zag{
-    padding-top: 10px;
-    text-align: center;
-    font-size: 26px;
-    font-weight: 700;
-}
-
-.register_form{
+/*================================================================================   Footer   =============================================================*/
+/* Main Footer */
+.row{
     font-family: 'Montserrat';
-    width: 450px;
-    margin: 0 auto;
-    margin-bottom: 15px;
-    margin-top: 100px;
-    border-radius: 15px;
-    box-shadow: 0 0 8px 7px #f4f4f4;
-    min-height: 420px;
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+    gap: 30px;
+    font-size: 16px;
 }
 
-.check{
-    display:flex;
-    flex-direction: column;
+.col-md-3{
+    max-width: 235.48px;
+
 }
 
-.register_btn{
-    margin: 0 auto;
-    width: 410px;
-    height: 45px;
+.footer_btn{
+    display: block;
+    width: 120px;
+    height: 20px;
     border: 1px solid #ccc;
     margin-bottom: 20px;
     transition: 1s;
@@ -171,70 +153,15 @@ html{
     color: #fffff0;
     transition: 0.5s;
     font-weight: 700;
-    font-size: 18px;
+    font-size: 16px;
     border-radius: 15px;
-    box-shadow: 0 0 8px 1px #f4f4f4;
 }
 
-.register_btn:hover{
+.footer_btn:hover{
     color: #333333;
     background-color: #4b92dc;
 }
 
-.form_container{
-    width: 410px;
-    margin: 0 auto;
-    p{
-        margin-top: 10px;
-    }
-}
-/*================================================================================   Person   ============================================================*/
-.content{
-    font-family: 'Montserrat';
-    overflow: auto;
-    border: 2px solid #bd8abd;
-    height: 300px;
-    margin: 0 auto;
-    width: 95%;
-}
-
-.person_table{
-    width: 100%;
-    text-align: left;
-    font-size: 18px;
-    color: white;
-}
-.content table td, th{
-   border-bottom: 1px solid #bd8abd;
-   padding: 25px;
-}
-.table_columns_contain{
-    border: 2px solid #bd8abd;
-    border-bottom: none;
-    margin: 0 auto;
-    margin-top: 70px;
-    width: 95%;
-}
-
-.table_columns{
-    width: 100%;
-    text-align: left;
-    font-size: 18px;
-    color: white;
-}
-table {
-  font-family: 'Montserrat';
-  table-layout: fixed;
-  width: 100%;
-}
-.table_columns td, th{
-   border-bottom: 1px solid #bd8abd;
-   padding: 22px;
-   background-color: rgb(255,255,255, 0.5);
-}
-
-/*================================================================================   Footer   =============================================================*/
-/* Main Footer */
 footer .main-footer{ padding: 20px 0; background: #252525; flex-shrink: 0;}
 footer ul{ padding-left: 0; list-style: none;}
 /* Copy Right Footer */
