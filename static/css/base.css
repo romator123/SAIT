@@ -104,10 +104,10 @@ html{
 }
 
 .logo{
-    width: 60px;
+    width: 20%;
     height: 50px;
     margin-right: 150px;
-    background-image: url("../image/logo-abak.jpg") ;
+    background: url("../image/logo-abak.jpg")no-repeat;
     background-size: contain;
 }
 
