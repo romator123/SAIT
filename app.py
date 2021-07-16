@@ -4,7 +4,6 @@ import numpy as np
 import os
 import pymysql
 
-
 #cam = cv2.VideoCapture(1,cv2.CAP_DSHOW)
 cam = cv2.VideoCapture('http://192.168.201.120:8080/video',cv2.CAP_DSHOW)
 cam.set(3, 640) # set video width
@@ -16,15 +15,13 @@ cascadePath = "Cascades/haarcascade_frontalface_default.xml"
 faceCascade = cv2.CascadeClassifier(cascadePath);
 
 font = cv2.FONT_HERSHEY_SIMPLEX
+cam.release()
 connection = pymysql.connect(host="192.168.100.121",user="abak2000",passwd="romator123",database="register" )
 
 
 app = Flask(__name__)
 
 nameid=0
-
-x = {"name": "asdsadasd", "age": "10"}
-
 
 @app.route('/')
 def index():
@@ -33,7 +30,14 @@ def index():
 
 @app.route('/info_new', methods=['POST'])
 def info_new():
-    return jsonify(x=x)
+    cursor = connection.cursor()
+    cursor.execute("Select * from register order by surname")
+    rows = cursor.fetchall()
+    user = list(rows)
+    userdict = {}
+    for i in range(len(user)):
+        userdict.update({user[i][0]: {'name': user[i][1], 'surname': user[i][2], 'middle_name': user[i][3]}})
+    return jsonify(x=userdict)
 
 
 @app.route('/info')

@@ -13,13 +13,13 @@ function load()
                 $(".content").empty()
                 var table = document.createElement('table');
                 for(const key in data.x){
-                    let newRow = table.insertRow(key);
+                    let newRow = table.insertRow();
                     let name = newRow.insertCell(0);
                     let surname = newRow.insertCell(1);
-                    let age = newRow.insertCell(2);
+                    let middle_name = newRow.insertCell(2);
                     name.innerHTML = data.x[key].name;
                     surname.innerHTML = data.x[key].surname;
-                    age.innerHTML = data.x[key].age;
+                    middle_name.innerHTML = data.x[key].middle_name;
                 }
                 table.classList.add('person_table')
                 let head = table.insertRow(0);
