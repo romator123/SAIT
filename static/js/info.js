@@ -35,7 +35,8 @@ function load()
 }
 
 $(document).ready(function(){
-     setInterval('load()',1000);
+     load();
+     setInterval('load()',5000);
 });
 
 

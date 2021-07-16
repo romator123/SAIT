@@ -12,7 +12,7 @@
     width: 100%;
     text-align: left;
     font-size: 18px;
-    color: white;
+    color: red;
 }
 .content table td, th{
    border-bottom: 1px solid #bd8abd;
@@ -30,7 +30,7 @@
     width: 100%;
     text-align: left;
     font-size: 18px;
-    color: white;
+    color: red;
 }
 table {
   font-family: 'Montserrat';
