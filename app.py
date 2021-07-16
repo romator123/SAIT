@@ -1,36 +1,25 @@
 from flask import Flask, render_template, url_for, request, redirect
+import face_recognition
+import glob2 as gb
 import cv2
 import numpy as np
 import os
 import pymysql
 
-
-#cam = cv2.VideoCapture(1,cv2.CAP_DSHOW)
-cam = cv2.VideoCapture('http://192.168.201.120:8080/video',cv2.CAP_DSHOW)
-cam.set(3, 640) # set video width
-cam.set(4, 480) # set video height
-face_detector = cv2.CascadeClassifier(cv2.data.haarcascades +'Cascades/haarcascade_frontalface_default.xml')
-recognizer = cv2.face.LBPHFaceRecognizer_create()
-recognizer.read('trainer/trainer.yml')
-cascadePath = "Cascades/haarcascade_frontalface_default.xml"
-faceCascade = cv2.CascadeClassifier(cascadePath);
-
-font = cv2.FONT_HERSHEY_SIMPLEX
 connection = pymysql.connect(host="192.168.100.121",user="abak2000",passwd="romator123",database="register" )
 
 
 app = Flask(__name__)
 
-nameid=0
-
-
+nameid = []
+authorised = False
 
 
 @app.route('/')
 def index():
+    if authorised:
+        print('HELL YEAH!!!')
     return render_template('index.html')
-
-
 
 
 @app.route('/fio_input', methods=['POST', 'GET'])
@@ -41,141 +30,95 @@ def fio_input():
         name = request.form['name']
         middle_name = request.form['middle_name']
 
-
         cursor = connection.cursor()
         cursor.execute("Select idregister  from register WHERE surname=(%s) AND name=(%s) AND middle_name=(%s) ",
                        (surname, name, middle_name))
-        rows = cursor.fetchone()
-        for row in rows:
-            print(row)
+        rows = cursor.fetchall()
         connection.commit()
 
         global nameid
-        nameid = int(rows[0])
-
+        nameid = list(rows)
+        for i in range(len(nameid)):
+            nameid[i] = str(nameid[i])[1:-2]
 
         return redirect('/face_check')
     else:
         return render_template('fio_input.html')
 
 
-@app.route('/register', methods=['POST', 'GET'])
-def register():
-    count=0
-    face_id=0
-    if request.method == 'POST':
-        surname = request.form['surname']
-        name = request.form['name']
-        middle_name = request.form['middle_name']
-        cursor = connection.cursor()
-        sql = "INSERT INTO register (name, surname,middle_name) VALUES (%s, %s, %s)"
-        val = (name, surname, middle_name)
-        cursor.execute(sql, val)
-        cursor.execute("Select idregister  from register WHERE surname=(%s) AND name=(%s) AND middle_name=(%s) ",
-                       (surname, name, middle_name))
-        rows = cursor.fetchone()
-        for row in rows: print(row)
-        face_id = int(rows[0])
-        connection.commit()
-        connection.close()
-        while (True):
-            ret, img = cam.read()
-            gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-            faces = face_detector.detectMultiScale(gray, 1.3, 5)
-            for (x, y, w, h) in faces:
-                cv2.rectangle(img, (x, y), (x + w, y + h), (255, 0, 0), 2)
-                count += 1
-
-                # Save the captured image into the datasets folder
-                cv2.imwrite(r"C:/User//tcach/PycharmProject/WEBCAM/dataset/User." + str(face_id) + '.' + str(count) + ".jpg", gray[y:y + h, x:x + w])
-
-                cv2.imshow('image', img)
-
-            k = cv2.waitKey(100) & 0xff  # Press 'ESC' for exiting video
-            if k == 27:
-                break
-            elif count >= 30:  # Take 30 face sample and stop video
-                break
-            cam.release()
-            cv2.destroyAllWindows()
-        return redirect('/')
-    else:
-        return render_template('register.html')
-
 @app.route('/face_check', methods=['POST', 'GET'])
 def face_check():
-    if request.method == 'POST':
-        cap = cv2.VideoCapture('rtsp://admin:123456@192.168.1.216/H264?ch=1&subtype=0')
-        # print("After URL")
+    video_capture = cv2.VideoCapture(0)
+    #img_path = gb.glob(r'C:\PythonProjects\SAIT-Back\SAIT-Back\webcam/*.jpg')
+    img_path = gb.glob(r'\home\dev\github\photo/*.jpg')
+    known_face_names = []
+    known_face_encodings = []
 
-        while True:
+    for i in img_path:
+        picture_name = i.replace('/*.jpg', '')
+        picture_newname = picture_name.replace('.jpg', '')
+        if picture_newname[picture_newname.rfind('\\')+1:] in nameid:
+            someone_img = face_recognition.load_image_file(i)
+            someone_face_encoding = face_recognition.face_encodings(someone_img)[0]
+            known_face_names.append(picture_newname)
+            known_face_encodings.append(someone_face_encoding)
+        someone_img = []
+        someone_face_encoding = []
 
-            # print('About to start the Read command')
-            ret, frame = cap.read()
-            # print('About to show frame of Video.')
-            cv2.imshow("Capturing", frame)
-            # print('Running..')
+    face_locations = []
+    face_encodings = []
+    face_names = []
+    process_this_frame = True
 
-            if cv2.waitKey(1) & 0xFF == ord('q'):
-                break
+    while True:
+        ret, frame = video_capture.read()
+        small_frame = cv2.resize(frame, (0, 0), fx=0.25, fy=0.25)
+        rgb_small_frame = small_frame[:, :, ::-1]
+        global authorised
 
-        cap.release()
-        cv2.destroyAllWindows()
-
-        '''id = 0
-
-
-        # Initialize and start realtime video capture
-        #cam = cv2.VideoCapture(0)
-        cam = cv2.VideoCapture('http://192.168.201.120:8080/video', cv2.CAP_DSHOW)
-        cam.set(3, 640)  # set video widht
-        cam.set(4, 480)  # set video height
-
-        ## Define min window size to be recognized as a face
-        minW = 0.1 * cam.get(3)
-        minH = 0.1 * cam.get(4)
-
-        while True:
-            ret, img = cam.read()
-            gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-
-            faces = faceCascade.detectMultiScale(
-                gray,
-                scaleFactor=1.2,
-                minNeighbors=5,
-                minSize=(int(minW), int(minH)),
-            )
-
-            for (x, y, w, h) in faces:
-                cv2.rectangle(img, (x, y), (x + w, y + h), (0, 255, 0), 2)
-                id, confidence = recognizer.predict(gray[y:y + h, x:x + w])
-
-                # Check if confidence is less them 100 ==> "0" is perfect match
-                if (nameid==id):
-                    idname='Compleate'
-                    confidence = "  {0}%".format(round(100 - confidence))
+        if process_this_frame:
+            face_locations = face_recognition.face_locations(rgb_small_frame)
+            face_encodings = face_recognition.face_encodings(rgb_small_frame, face_locations)
+            face_names = []
+            for i in face_encodings:
+                match = face_recognition.compare_faces(known_face_encodings, i, tolerance=0.39)
+                if True in match:
+                    match_index = match.index(True)
+                    authorised = True
+                    name = "match"
+                    # To print name
+                    print(known_face_names[match_index])
                 else:
-                    idname = 'Warning'
-                    confidence = "  {0}%".format(round(100 - confidence))
+                    match_index = match.index(False)
+                    name = "unknown"
+                face_names.append(name)
 
-                cv2.putText(img, str(idname), (x + 5, y - 5), font, 1, (255, 255, 255), 2)
-                cv2.putText(img, str(confidence), (x + 5, y + h - 5), font, 1, (255, 255, 0), 1)
+        process_this_frame = not process_this_frame
 
-            cv2.imshow('camera', img)
+        for (top, right, bottom, left), name in zip(face_locations, face_names):
+            top *= 4
+            right *= 4
+            bottom *= 4
+            left *= 4
 
-            k = cv2.waitKey(10) & 0xff  # Press 'ESC' for exiting video
-            if k == 27:
-                break
+            cv2.rectangle(frame, (left, top), (right, bottom), (0, 0, 255), 2)
 
-        # Do a bit of cleanup
-        print("\n [INFO] Exiting Program and cleanup stuff")
-        cam.release()
-        cv2.destroyAllWindows()
-'''
-        ##if (id_to_check == face_id)
-            ##return redirect('/info')
-    else:
-        return render_template('face_check.html')
+            cv2.rectangle(frame, (left, bottom - 35), (right, bottom), (0, 0, 255), 2)
+            font = cv2.FONT_HERSHEY_DUPLEX
+            if match_index:
+                answer = known_face_names[match_index][known_face_names[match_index].rfind('\\') + 1:]
+                cv2.putText(frame, answer, (left + 6, bottom - 6), font, 1.0, (255, 255, 255), 1)
+            else:
+                cv2.putText(frame, name, (left + 6, bottom - 6), font, 1.0, (255, 255, 255), 1)
+
+        cv2.imshow('Video', frame)
+
+        if (cv2.waitKey(1) & 0xFF == ord('q')) or authorised:
+            break
+
+    video_capture.release()
+    cv2.destroyAllWindows()
+    return redirect('/')
 
 
 if __name__ == '__main__':

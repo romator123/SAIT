@@ -1,5 +1,4 @@
-<!doctype html>
-    <html lang="ru">
+   <html lang="ru">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -7,7 +6,7 @@
         <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css')}}">
         <title>{% block title %} {% endblock %}</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
     </head>
     <body>
     <div class="wrapper">
@@ -19,7 +18,6 @@
                         <div class="nav">
                             <div class="nav_link"><a href="/">Главная</a></div>
                             <div class="nav_link"><a href="/info">Информация</a></div>
-                            <div class="nav_link"><a href="/register">Регистрация</a></div>
                             <div class="nav_link"><a href="/fio_input">Вход</a></div>
                         </div>
                     </div>
@@ -27,7 +25,7 @@
             </div>
         </header>
         <main>
-            {% block body %} {% endblock %}
+            {% block main %} {% endblock %}
         </main>
         <footer id="footer" class="footer-1">
             <div class="main-footer widgets-dark typo-light">
@@ -71,7 +69,7 @@
                         <div class="widget no-box">
                             <h5 class="widget-title">Начало работы<span></span></h5>
                             <p>Получите доступ к полному набору наших услуг.</p>
-                            <a class="btn" href="#." target="_blank">Register Now</a>
+                            <a class="footer_btn" href="#." target="_blank">Register Now</a>
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-3">
