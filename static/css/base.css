@@ -33,7 +33,7 @@ a {
 }
 
 a:hover{
-    color: #b9b9bf !important;
+    color: white !important;
     text-decoration: none;
 }
 
@@ -194,6 +194,14 @@ html{
     .fixed-page{
         overflow: hidden; /*запрещаем прокручивание страницы при открытом меню*/
     }
+}
+
+.phones{
+    position: absolute;
+    top: 0;
+    right: 1%;
+    color: red;
+    font-size: 20px;
 }
 /*================================================================================   Footer   =============================================================*/
 /* Main Footer */

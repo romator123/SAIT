@@ -24,11 +24,12 @@ h1{
 }
 
 .terminal{
+    border: none;
+    color: white;
     background: red;
     width: 500px;
     height: 120px;
     text-align: center;
-    padding-top: 50px;
     font-size: 60px;
     border-radius: 50px;
     transition: 1s;
