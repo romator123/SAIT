@@ -7,9 +7,8 @@ from camera import  VideoCamera
 
 #cam = cv2.VideoCapture(1,cv2.CAP_DSHOW)
 #cam = cv2.VideoCapture('rtsp://192.168.0.12:8080/h264_ulaw.sdp',cv2.CAP_DSHOW)
-cam = cv2.VideoCapture(0,cv2.CAP_DSHOW)
-cam.set(3, 640) # set video width
-cam.set(4, 480) # set video height
+#cam = cv2.VideoCapture(0,cv2.CAP_DSHOW)
+##cam.set(4, 480) # set video height
 face_detector = cv2.CascadeClassifier(cv2.data.haarcascades +'Cascades/haarcascade_frontalface_default.xml')
 recognizer = cv2.face.LBPHFaceRecognizer_create()
 video_stream=VideoCamera()
@@ -20,7 +19,7 @@ cascadePath = "Cascades/haarcascade_frontalface_default.xml"
 faceCascade = cv2.CascadeClassifier(cascadePath);
 
 font = cv2.FONT_HERSHEY_SIMPLEX
-connection = pymysql.connect(host="192.168.100.121",user="abak2000",passwd="romator123",database="register" )
+connection = pymysql.connect(host="127.0.0.1",user="root",passwd="romator123",database="register" )
 
 
 app = Flask(__name__)

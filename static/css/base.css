@@ -104,10 +104,10 @@ html{
 }
 
 .logo{
-    width: 60px;
+    width: 20%;
     height: 50px;
     margin-right: 150px;
-    background-image: url("../image/logo-abak.jpg") ;
+    background: url("../image/logo-abak.jpg")no-repeat;
     background-size: contain;
 }
 
@@ -124,6 +124,75 @@ html{
     background: -webkit-linear-gradient(bottom, #232323, #333333);
     background: -o-linear-gradient(bottom, #232323, #333333);
     background: -ms-linear-gradient(bottom, #232323, #333333);
+}
+
+@media(max-width: 767px){
+    .menu-burger__header {
+        position: relative; /* задаем относительное позиционирование */
+        width: 40px; /* определяем размеры блока */
+        height: 35px;
+        display: block;
+        margin-left: 10px;
+    }
+    .menu-burger__header span, .menu-burger__header:after, .menu-burger__header:before{
+        height: 3px;
+        width: 100%;
+        position: absolute;
+        background: white;
+        margin: 0 auto;
+    }
+    .menu-burger__header span{
+        top: 21px;
+    }
+    .menu-burger__header:after, .menu-burger__header:before{
+        content: '';
+    }
+    .menu-burger__header:after{
+        bottom: 0px;
+    }
+    .menu-burger__header:before{
+        top: 10px;
+    }
+    .nav {
+        overflow: auto;
+        display: block;
+        position: absolute;
+        top: 55px;
+        left: 0;
+        background: rgb(245, 246, 246);
+        box-shadow: #ccc;
+        width: 100%;
+        box-shadow: 0 4px 2px -2px rgba(36, 36, 36, 0.17);
+        left: -100%;
+        transition: all 0.4s ease;
+        background: -webkit-linear-gradient(bottom, #252525, #454545);
+        background: -o-linear-gradient(bottom, #252525, #454545);
+        background: -ms-linear-gradient(bottom, #252525, #454545);
+}
+    .nav.open-menu{
+        left: 0;
+    }
+    .menu-burger__header.open-menu span {
+        opacity:0;
+        transition: 0.5s;
+    }
+    .menu-burger__header.open-menu:before {
+        transform: rotate(38deg);
+        top: 22px;
+        transition: 0.4s;
+    }
+    .menu-burger__header.open-menu:after {
+        transform: rotate(-38deg);
+        bottom: 10px;
+        transition: 0.4s;
+    }
+    .nav_link{
+        margin: 40px 0px 40px 33px;
+        font-size: 14px;
+    }
+    .fixed-page{
+        overflow: hidden; /*запрещаем прокручивание страницы при открытом меню*/
+    }
 }
 /*================================================================================   Footer   =============================================================*/
 /* Main Footer */

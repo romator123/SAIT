@@ -1,7 +1,9 @@
 import cv2
+import time
 class VideoCamera(object):
+
     def __init__(self):
-        self.video = cv2.VideoCapture('rtsp://192.168.201.63:8080/h264_ulaw.sdp')
+        self.video = cv2.VideoCapture('rtsp://192.168.201.121:8080/h264_ulaw.sdp')
 
     def __del__(self):
         self.video.release()

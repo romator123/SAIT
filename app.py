@@ -1,4 +1,6 @@
-from flask import Flask, render_template, url_for, request, redirect
+from flask import Flask, render_template, url_for, request, redirect,jsonify
+from flask_sqlalchemy import SQLAlchemy, BaseQuery
+from sqlalchemy.sql import and_, or_
 import face_recognition
 import glob2 as gb
 import cv2
@@ -8,8 +10,28 @@ import pymysql
 
 connection = pymysql.connect(host="192.168.100.121",user="abak2000",passwd="romator123",database="register" )
 
-
+db = SQLAlchemy()
 app = Flask(__name__)
+
+
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URI', (f'mysql+pymysql://abak2000:romator123@192.168.100.121/register'))
+
+
+class User(db.Model):
+    __tablename__ = "register"
+    idregister = db.Column(db.Integer, primary_key=True)
+    surname = db.Column(db.String(100), nullable=False)
+    name = db.Column(db.String(100), nullable=False)
+    middle_name = db.Column(db.String(100), nullable=False)
+
+
+    def __repr__(self):
+        return '<User %r>' % self.id
+
+
+db.init_app(app)
+
 
 nameid = []
 authorised = False
@@ -21,6 +43,12 @@ def index():
         print('HELL YEAH!!!')
     return render_template('index.html')
 
+
+'''''@app.route('/info')
+def info():
+    users = User.query.order_by(User.surname).all()
+    return render_template('info.html', users=users)
+'''
 
 @app.route('/fio_input', methods=['POST', 'GET'])
 def fio_input():
@@ -48,9 +76,8 @@ def fio_input():
 
 @app.route('/face_check', methods=['POST', 'GET'])
 def face_check():
-    video_capture = cv2.VideoCapture(0)
-    #img_path = gb.glob(r'C:\PythonProjects\SAIT-Back\SAIT-Back\webcam/*.jpg')
-    img_path = gb.glob(r'\home\dev\github\photo/*.jpg')
+    video_capture = cv2.VideoCapture('rtsp://192.168.201.121:8080/h264_ulaw.sdp')
+    img_path = gb.glob(r'C:\photo/*.jpg')
     known_face_names = []
     known_face_encodings = []
 
@@ -69,7 +96,7 @@ def face_check():
     face_encodings = []
     face_names = []
     process_this_frame = True
-
+    print(known_face_names)
     while True:
         ret, frame = video_capture.read()
         small_frame = cv2.resize(frame, (0, 0), fx=0.25, fy=0.25)
@@ -120,7 +147,20 @@ def face_check():
     cv2.destroyAllWindows()
     return redirect('/')
 
+@app.route('/info')
+def info():
+    return render_template('info.html')
+
+@app.route('/info_new', methods=['POST'])
+def info_new():
+    cursor = connection.cursor()
+    cursor.execute("Select * from register order by surname")
+    rows = cursor.fetchall()
+    user = list(rows)
+    userdict = {}
+    for i in range(len(user)):
+        userdict.update({user[i][0]: {'name': user[i][1], 'surname': user[i][2], 'middle_name': user[i][3]}})
+    return jsonify(x=userdict)
 
 if __name__ == '__main__':
     app.run(debug=True)
-
