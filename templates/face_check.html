@@ -7,11 +7,8 @@
 {% block main %}
 <h1 style="color:white">Проверка лица</h1>
 <div class="register_form">
-    <form method="POST">
-        <div class="check">
-            <img src="{{ url_for('face_check') }}" />
-            <input class="register_btn" type="submit" value="Отправить"></input>
-        </div>
-    </form>
+    <video id="video" width="720" height="560" autoplay muted></video>
 </div>
+<script src="../static/js/face-api.min.js"></script>
+<script src="../static/js/face_check.js"></script>
 {% endblock %}

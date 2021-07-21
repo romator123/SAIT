@@ -1,10 +1,11 @@
 h1{
-    color: red;
+    color: white;
     width: 700px;
     font-size: 35px;
+    margin-left: 10%;
 }
 .header{
-    color: red;
+    color: white;
     display: flex;
     margin: 0 auto;
     margin-top: 30px;
