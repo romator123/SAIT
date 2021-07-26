@@ -1,7 +1,7 @@
 function load_kab()
 {
     $.ajax({
-        type: "POST",
+        type: "PUT",
         url: "/register_btn",
         contentType: false,
         cache: false,
@@ -23,7 +23,7 @@ function load_kab()
 
 function load(){
     $.ajax({
-        type: "POST",
+        type: "PUT",
         url: "/register_btn_time",
         contentType: false,
         cache: false,
@@ -45,3 +45,7 @@ function load(){
 $(document).ready(function(){
      load_kab();
 });
+
+document.querySelector('#nav').onclick = function() {
+  document.body.classList.toggle('dark');
+}

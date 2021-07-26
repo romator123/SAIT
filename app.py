@@ -123,12 +123,12 @@ y = {"0":{"id": "0", "value": "1"}, "1":{"id": "1", "value": "2"}, "3":{"id": "3
 z = {"р":{"id": "фв", "value": "19:00"}, "ц":{"id": "йу", "value": "10:00"}, "фв":{"id": "яс", "value": "11:00"}}
 
 
-@app.route('/register_btn', methods=['POST'])
+@app.route('/register_btn', methods=['PUT'])
 def register_btn():
     return jsonify(y=y)
 
 
-@app.route('/register_btn_time', methods=['POST'])
+@app.route('/register_btn_time', methods=['PUT'])
 def register_btn_time():
     return jsonify(z=z)
 
