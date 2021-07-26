@@ -16,7 +16,7 @@ faceCascade = cv2.CascadeClassifier(cascadePath);
 
 font = cv2.FONT_HERSHEY_SIMPLEX
 cam.release()
-connection = pymysql.connect(host="192.168.100.121",user="abak2000",passwd="romator123",database="register" )
+'''connection = pymysql.connect(host="192.168.100.121",user="abak2000",passwd="romator123",database="register" )'''
 
 
 app = Flask(__name__)
@@ -26,6 +26,11 @@ nameid=0
 @app.route('/')
 def index():
     return render_template('index.html')
+
+
+@app.route('/queue')
+def queue():
+    return render_template('queue.html')
 
 
 @app.route('/info_new', methods=['POST'])
@@ -114,6 +119,20 @@ def register():
     else:
         return render_template('register.html')
 
+y = {"0":{"id": "0", "value": "1"}, "1":{"id": "1", "value": "2"}, "3":{"id": "3", "value": "3"}}
+z = {"р":{"id": "фв", "value": "19:00"}, "ц":{"id": "йу", "value": "10:00"}, "фв":{"id": "яс", "value": "11:00"}}
+
+
+@app.route('/register_btn', methods=['POST'])
+def register_btn():
+    return jsonify(y=y)
+
+
+@app.route('/register_btn_time', methods=['POST'])
+def register_btn_time():
+    return jsonify(z=z)
+
+
 @app.route('/face_check', methods=['POST', 'GET'])
 def face_check():
     if request.method == 'POST':
@@ -133,7 +152,6 @@ def face_check():
 
         cap.release()
         cv2.destroyAllWindows()
-
         '''id = 0
 
 

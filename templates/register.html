@@ -7,11 +7,11 @@
 
 {% endblock %}
 {% block main %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/register.css')}}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/fio_input.css')}}">
 <div  class="register_form">
     <div class="form_container">
         <div class="zag">
-            <p>Регистрация</p>
+            <p>Запись</p>
         </div>
         <form method="post">
             <p>Фамилия</p>
@@ -20,9 +20,23 @@
             <input type="text" id="name" class="inp" name="name" placeholder="Иван">
             <p>Отчество</p>
             <input type="text"  id="middle_name"class="inp" name="middle_name" placeholder="Иванович">
+            <hr class="hr-line">
+            <div class="zagol">
+                <p>Выберите кабинет</p>
+            </div>
+            <div class="kab"></div>
+            <div class="on-hover">
+                Видимый
+            </div>
+            <div class="hidden-block">
+                Скрытый
+            </div>
+            <hr class="hr-line">
+            <div class="time"></div>
             <input class="register_btn" type="submit" value="Отправить"></input>
         </form>
     </div>
 </div>
 <script src="../static/js/validators.js"></script>
+<script src="../static/js/register.js"></script>
 {% endblock %}

@@ -1,10 +1,9 @@
 /*================================================================================   Fio_Input   ===========================================================*/
 .inp{
-    font-size: 40px;
     display: block;
     margin: 0 auto;
-    width: 98%;
-    height: 70px;
+    width: 400px;
+    height: 45px;
     border: 1px solid #ccc;
     margin-bottom: 20px;
     transition: 0.3s;
@@ -17,24 +16,30 @@
 }
 
 .zag{
+    color: white;
     padding-top: 10px;
     text-align: center;
-    font-size: 46px;
+    font-size: 26px;
+    font-weight: 700;
+}
+
+.zagol{
+    color: white;
+    text-align: center;
+    font-size: 26px;
     font-weight: 700;
 }
 
 .register_form{
-    font-weight: 700;
     color: white;
     font-family: 'Montserrat';
-    font-size: 30px;
-    width: 70%;
+    width: 450px;
     margin: 0 auto;
     margin-bottom: 15px;
     margin-top: 100px;
     border-radius: 15px;
     box-shadow: 0 0 8px 7px #f4f4f4;
-    min-height: 70%;
+    min-height: 420px;
 }
 
 .check{
@@ -43,31 +48,111 @@
 }
 
 .register_btn{
-    display: block;
     margin: 0 auto;
-    margin-top: 40px;
-    width: 40%;
-    height: 105px;
+    width: 410px;
+    height: 45px;
     border: 1px solid #ccc;
     margin-bottom: 20px;
     transition: 1s;
-    background-color: red;
+    padding-left: 10px;
+    background-color: #ff8d1e;
     color: #fffff0;
     transition: 0.5s;
     font-weight: 700;
-    font-size: 38px;
+    font-size: 18px;
     border-radius: 15px;
     box-shadow: 0 0 8px 1px #f4f4f4;
 }
 
 .register_btn:hover{
-    background-color: green;
+    color: #333333;
+    background-color: #4b92dc;
 }
 
 .form_container{
-    width: 90%;
+    width: 410px;
     margin: 0 auto;
     p{
         margin-top: 10px;
     }
+}
+
+.form_radio_btn {
+	display: inline-grid;
+	margin-right: 7px;
+	margin-bottom: 10px;
+	width: 70px;
+
+}
+.form_radio_btn input[type=radio] {
+	display: none;
+}
+.form_radio_btn label {
+	display: inline-block;
+	cursor: pointer;
+	padding: 0px 15px;
+	line-height: 34px;
+	border: 1px solid #999;
+	border-radius: 6px;
+	user-select: none;
+}
+
+/* Checked */
+.form_radio_btn input[type=radio]:checked + label {
+	background: #ffe0a6;
+}
+
+/* Hover */
+.form_radio_btn label:hover {
+	color: #666;
+}
+
+/* Disabled */
+.form_radio_btn input[type=radio]:disabled + label {
+	background: #efefef;
+	color: #666;
+}
+
+.hr-line {
+	margin: 20px 0;
+	padding: 0;
+	height: 0;
+	border: none;
+	border-top: 1px solid white;
+}
+
+.form_radio_kab_btn {
+	display: inline-grid;
+	margin-right: 7px;
+	margin-bottom: 10px;
+	width: 60px;
+
+}
+.form_radio_kab_btn input[type=radio] {
+	display: none;
+}
+.form_radio_kab_btn label {
+	display: inline-block;
+	cursor: pointer;
+	padding: 0px 15px;
+	line-height: 34px;
+	border: 1px solid #999;
+	border-radius: 6px;
+	user-select: none;
+}
+
+/* Checked */
+.form_radio_kab_btn input[type=radio]:checked + label {
+	background: #ffe0a6;
+}
+
+/* Hover */
+.form_radio_kab_btn label:hover {
+	color: #666;
+}
+
+/* Disabled */
+.form_radio_kab_btn input[type=radio]:disabled + label {
+	background: #efefef;
+	color: #666;
 }
