@@ -14,24 +14,42 @@
             <p>Запись</p>
         </div>
         <form method="post">
-            <p>Фамилия</p>
-            <input type="text" id="surname" class="inp" name="surname"  placeholder="Иванов">
-            <p>Имя</p>
-            <input type="text" id="name" class="inp" name="name" placeholder="Иван">
-            <p>Отчество</p>
-            <input type="text"  id="middle_name"class="inp" name="middle_name" placeholder="Иванович">
-            <hr class="hr-line">
-            <div class="zagol">
-                <p>Выберите кабинет</p>
+            <div class="form_line">
+            <div class="line">
+                <p>Фамилия</p>
+                <input type="text" id="surname" class="inp" name="surname"  placeholder="Иванов">
+                <p>Имя</p>
+                <input type="text" id="name" class="inp" name="name" placeholder="Иван">
+                <p>Отчество</p>
+                <input type="text"  id="middle_name"class="inp" name="middle_name" placeholder="Иванович">
             </div>
-            <div class="kab"></div>
-
-            <hr class="hr-line">
-            <div class="time"></div>
+            <div class="line">
+                <div class="zagol">
+                    <p>Выберите кабинет</p>
+                </div>
+                <div class="kab">
+                    <div class="form_radio_kab_btn">
+                        <input id="hj" type="radio" name="radio_kab" value="1">
+                        <label for="hj">№1</label>
+                    </div>
+                    <div class="form_radio_kab_btn">
+                        <input id="hk" type="radio" name="radio_kab" value="2">
+                        <label for="hk">№2</label>
+                    </div>
+                    <div class="form_radio_kab_btn">
+                        <input id="hl" type="radio" name="radio_kab" value="3">
+                        <label for="hl">№3</label>
+                    </div>
+                </div>
+                <hr class="hr-line">
+                <div class="time"></div>
+            </div>
+            </div>
             <input class="register_btn" type="submit" value="Отправить"></input>
 
         </form>
-
+        <div id="div1" style="display : block">Первый DIV</div>
+        <div id="div2" style="display : none">Второй DIV</div>
     </div>
 </div>
 <script src="../static/js/validators.js"></script>

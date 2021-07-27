@@ -8,11 +8,14 @@
     margin-bottom: 20px;
     transition: 0.3s;
     padding-left: 10px;
-    border-radius: 5px;
 }
 
 .inp:hover{
     border: 1px solid #64656a;
+}
+
+.line{
+    margin-left: 50px;
 }
 
 .zag{
@@ -24,18 +27,21 @@
 }
 
 .zagol{
+    font-family: 'Montserrat';
     color: white;
     text-align: center;
-    font-size: 26px;
+    font-size: 16px;
     font-weight: 700;
 }
 
 .register_form{
+    font-weight: 700;
     color: white;
     font-family: 'Montserrat';
-    width: 450px;
+    min-width: 450px;
+    max-width: 800px;
     margin: 0 auto;
-    margin-bottom: 15px;
+    margin-bottom: 65px;
     margin-top: 100px;
     border-radius: 15px;
     box-shadow: 0 0 8px 7px #f4f4f4;
@@ -48,7 +54,7 @@
 }
 
 .register_btn{
-    margin: 0 auto;
+    display: block;
     width: 410px;
     height: 45px;
     border: 1px solid #ccc;
@@ -62,6 +68,7 @@
     font-size: 18px;
     border-radius: 15px;
     box-shadow: 0 0 8px 1px #f4f4f4;
+    margin: 0 auto;
 }
 
 .register_btn:hover{
@@ -70,13 +77,14 @@
 }
 
 .form_container{
-    width: 410px;
-    margin: 0 auto;
+    width: 850px;
     p{
         margin-top: 10px;
     }
 }
-
+.form_line{
+    display: flex;
+}
 .form_radio_btn {
 	display: inline-grid;
 	margin-right: 7px;

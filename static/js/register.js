@@ -1,30 +1,25 @@
-function load_kab()
-{
-    $.ajax({
-        type: "PUT",
-        url: "/register_btn",
-        contentType: false,
-        cache: false,
-        processData: false,
-        success: function(data){
-           $(".kab").empty()
-           for(const key in data.y){
-                let time = document.createElement('div')
-                time.className="form_radio_kab_btn"
-                let id_kab = data.y[key].id
-                let value_kab = data.y[key].value
-	            time.innerHTML=`<input id=${id_kab} type="radio" name="radio_kab" value=${value_kab} checked><label for=${id_kab}>№${value_kab}</label>`
-	            document.querySelector(".kab").append(time);
-	            $(".form_radio_kab_btn").on("select", load())
-           }
-        }
+$("input[name='radio_kab']").on("click", load_time())
+
+function load_time(e){
+    $('input[type="radio"]').click(function(){
+        $.ajax({
+            type: "PUT",
+            url: "/register",
+            contentType: false,
+            cache: false,
+            processData: false,
+            data: {text: $('input[name="radio_kab"]:checked').val()},
+            success: function(data){
+                console.log(data)
+            }
+        })
     })
 }
 
 function load(){
     $.ajax({
         type: "PUT",
-        url: "/register_btn_time",
+        url: "/register",
         contentType: false,
         cache: false,
         processData: false,
@@ -34,7 +29,7 @@ function load(){
                 let time = document.createElement('div')
                 time.className="form_radio_btn"
                 let id = data.z[key].id
-                let value = data.z[key].value
+                let value = data.z[key].time
                 time.innerHTML=`<input id=${id} type="radio" name="radio1" value=${value} checked><label for=${id}>${value}</label>`
                 document.querySelector(".time").append(time);
             }
@@ -42,10 +37,27 @@ function load(){
     })
 }
 
-$(document).ready(function(){
-     load_kab();
+
+
+$(document).ready(function() {
+  $("div#div1").click(function() {
+    $("div#div2").slideToggle();
+  });
 });
 
-document.querySelector('#nav').onclick = function() {
-  document.body.classList.toggle('dark');
+
+$('.inp').on('input', function(){
+    if(CheckForm()){
+        console.log(123)
+    }
+});
+
+function CheckForm(){
+    let requiredField = $(".inp"); // Получаем все элементы, которые указаны как обязательные к заполнению
+    for(let i = 0; i < requiredField.length; i++) { // Обходим все полученные элементы
+        if($(requiredField[i]).val() == '') { // Если хотя бы одно из обязательных полей не заполнено
+            return false; // Возвращаем false
+        }
+    }
+    return true;
 }
