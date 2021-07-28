@@ -41,6 +41,11 @@ def index():
     return render_template('index.html')
 
 
+@app.route('/show')
+def show():
+    return render_template('show.html')
+
+
 @app.route('/register', methods=['POST', 'GET', 'PUT'])
 def register():
     if request.method == 'POST':
@@ -55,7 +60,7 @@ def register():
         rows = cursor.fetchall()
         tempnameid = list(rows)
         tempnameid = str(nameid)[1:-2]
-        cursor.execute("INSERT INTO records (iduser, cabinet, time) VALUES(%d, %d, %s) ",
+        cursor.execute("INSERT INTO records (iduser, cabinet, time) VALUES(%s, %s, %s) ",
                        (int(tempnameid), int(request.form['cab']), request.form['time']))
         connection.close()
         print('ПЕРЕВОЖУ ДИНЕРРО НА ИХ СЧЁТИК, ПУСТЬ ОПТИМА ПО-ДА-ВИ-ТСЯ')
@@ -65,17 +70,18 @@ def register():
         times = {'10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00'}
         connection = pymysql.connect(host="192.168.100.121", user="abak2000", passwd="romator123", database="register")
         cursor = connection.cursor()
-        cursor.execute("SELECT format(time, 'hh:mm:ss') from records group by time")
+        cabinet = request.args['button']
+        cursor.execute("SELECT format(time, 'hh:mm:ss') from records WHERE cabinet=(%s) group by time ", int(cabinet))
         rows = cursor.fetchall()
         rows = list(rows)
         for i in range(len(rows)):
             rows[i] = str(rows[i])[2:4] + ':' + str(rows[i])[-8] + str(rows[i])[-6]
         rows = set(rows)
         times = list(times - rows)
+        times.sort()
         timedict = {}
         for i in range(len(times)):
             timedict.update({i: {'id': i, 'time': times[i]}})
-        print(timedict)
         return jsonify(z=timedict)
 
     else:
