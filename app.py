@@ -39,12 +39,21 @@ def index():
     if authorised:
         print('HELL YEAH!!!')
     return render_template('index.html')
+u = {"0": {"kab": "1", "time": "18:00", "surname": "adasd", "name": "asdasdd"}, "1": {"kab": "1", "time": "19:00", "surname": "adasd", "name": "asdasdd"}, }
+k = {"0": {"kab": "2", "time": "13:00", "surname": "hjkhjk", "name": "asdasdd"}, "1": {"kab": "2", "time": "18:00", "surname": "adasd", "name": "asdasdd"}, }
 
-
+@app.route('/show1', methods=['PUT'])
+def show1():
+    cabinet = request.args['button']
+    if request.method == 'PUT':
+        if int(cabinet) == 1:
+            return jsonify(x=u)
+        elif int(cabinet) == 2:
+            return jsonify(x=k)
+    return render_template('show.html')
 @app.route('/show')
 def show():
     return render_template('show.html')
-
 
 @app.route('/register', methods=['POST', 'GET', 'PUT'])
 def register():
@@ -203,10 +212,6 @@ def info_new():
     for i in range(len(user)):
         userdict.update({user[i][0]: {'name': user[i][1], 'surname': user[i][2], 'middle_name': user[i][3]}})
     return jsonify(x=userdict)
-
-
-y = {"0":{"id": "0", "value": "1"}, "1":{"id": "1", "value": "2"}, "3":{"id": "3", "value": "3"}}
-z = {"р":{"id": "фв", "value": "19:00"}, "ц":{"id": "йу", "value": "10:00"}, "фв":{"id": "яс", "value": "11:00"}}
 
 
 if __name__ == '__main__':
